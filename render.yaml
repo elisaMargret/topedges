@@ -1,0 +1,37 @@
+databases:
+  - name: topedges-app
+    plan: free
+    databaseName: topedges-app
+    user: topedges-app
+
+services:
+  - type: web
+    plan: free
+    name: topedges-app
+    runtime: docker
+    envVars:
+      # Database
+      - key: DATABASE_URL
+        fromDatabase:
+          name: topedges-app
+          property: connectionString
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: APP_KEY
+        # Laravel
+        sync: false
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: WEBROOT
+        # Image-specific vars (richarvey/nginx-php-fpm)
+        value: /var/www/html/public
+      - key: RUN_SCRIPTS
+        value: 1
+      - key: REAL_IP_HEADER
+        value: 1
+      - key: SKIP_COMPOSER
+        value: 1
