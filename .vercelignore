@@ -4,6 +4,7 @@
 .editorconfig
 .env.backup
 .env.example
+.env
 .env.production
 .git
 .gitattributes
