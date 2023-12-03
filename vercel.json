@@ -1,14 +1,24 @@
 {
     "version": 2,
     "framework": null,
-    "builds":[
+    "builds": [
         {
-            "src": "/api/index.php", "use": "vercel-php@0.5.3"
+            "src": "/api/index.php",
+            "use": "vercel-php@0.5.3"
         },
         {
-            "src": "/public/**", "use": "@vercel/static"
+            "src": "/public/**",
+            "use": "@vercel/static"
         }
     ],
+    "functions": {
+        "api/index.php": {
+            "runtime": "vercel-php@0.5.3"
+        },
+        "public/**": {
+            "runtime": "@vercel/static"
+        }
+    },
     "routes": [
         {
             "src": "/(css|js|images|assets|admin|storage|tradingview)/(.*)",
