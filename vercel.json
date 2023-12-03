@@ -1,12 +1,16 @@
 {
     "version": 2,
     "framework": null,
+    "builds": [
+        
+        {
+            "src": "/public/**",
+            "use": "@vercel/static"
+        }
+    ],
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.5.3"
-        },
-        "public/**": {
-            "runtime": "@vercel/static"
         }
     },
     "routes": [
