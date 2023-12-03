@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@vercel/analytics": "^1.1.1",
         "ladda": "^2.0.3"
     }
 }
