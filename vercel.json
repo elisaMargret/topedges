@@ -1,16 +1,6 @@
 {
     "version": 2,
     "framework": null,
-    "builds": [
-        {
-            "src": "/api/index.php",
-            "use": "vercel-php@0.5.3"
-        },
-        {
-            "src": "/public/**",
-            "use": "@vercel/static"
-        }
-    ],
     "functions": {
         "api/index.php": {
             "runtime": "vercel-php@0.5.3"
@@ -31,7 +21,7 @@
     ],
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
+        "APP_DEBUG": "true",
         "APP_URL": "https://topedges.online",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
