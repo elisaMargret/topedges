@@ -1,6 +1,6 @@
 FROM richarvey/nginx-php-fpm:3.1.6
 
-COPY composer.json composer.lock /var/www/html
+COPY composer.json composer.lock /var/www/html/
 
 WORKDIR /var/www/html
 
