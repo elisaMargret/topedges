@@ -1,4 +1,4 @@
-FROM richarvey/nginx-php-fpm:3.1.6
+FROM richarvey/nginx-php-fpm:2.0.0
 
 COPY composer.json composer.lock /var/www/html/
 
