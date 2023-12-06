@@ -28,7 +28,7 @@ services:
         value: stderr
       - key: WEBROOT
         # Image-specific vars (richarvey/nginx-php-fpm)
-        value: /var/www/html/public
+        value: /var/www/html
       - key: RUN_SCRIPTS
         value: 1
       - key: REAL_IP_HEADER
