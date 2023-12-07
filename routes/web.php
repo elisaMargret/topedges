@@ -84,7 +84,7 @@ use App\Http\Controllers\WalletsController;
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Admin
-// Route::group(['prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin'],function(){
 
     Route::get('/', [LoginController::class, 'index'])->name('admin.login');
     Route::get('/reset-password', [LoginController::class, 'resetPassword'])->name('admin.reset-password');
@@ -112,4 +112,4 @@ use App\Http\Controllers\WalletsController;
         'index' => 'admin.wallets'
     ]);
     
-// });
+});
