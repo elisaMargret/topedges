@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 echo "Running composer"
 composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-gd
 
@@ -13,6 +14,9 @@ php artisan config:cache
 
 echo "Caching routes..."
 php artisan route:cache
+
+echo "listing folder"
+ls -al
 
 # echo "Running migrations..."
 # php artisan migrate --force
