@@ -2,17 +2,12 @@ FROM richarvey/nginx-php-fpm:2.0.0
 
 COPY ./composer.json ./composer.lock /var/www/html/
 
-RUN apk update
-
 # Install dependencies
 RUN apk update && apk add --no-cache \
     build-essential \
     locales \
     zip \
-    unzip \
-    libonig-dev \
-    libzip-dev \
-    libgd-dev
+    unzip
 
 # Add user for Laravel application
 RUN groupadd -g 1000 www
