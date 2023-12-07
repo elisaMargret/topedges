@@ -1,14 +1,18 @@
 FROM richarvey/nginx-php-fpm:2.0.0
 
-WORKDIR /var/www/html
-
 # Copy only the necessary files for dependency installation
 COPY composer.json composer.lock /var/www/html/
 
-# Install dependencies
-RUN apk update
+# Set working directory
+WORKDIR /var/www/html
 
-RUN composer install --no-dev --optimize-autoloader
+
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install dependencies
+RUN apk update \
+    && composer install --no-dev --optimize-autoloader
 
 # Add user for Laravel application
 RUN addgroup -g 1000 www \
