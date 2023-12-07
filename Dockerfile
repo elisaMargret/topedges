@@ -7,8 +7,11 @@ COPY composer.json composer.lock /var/www/html/
 WORKDIR /var/www/html
 
 
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Install dependencies
+RUN composer update
+
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # Install dependencies
 RUN apk update \
