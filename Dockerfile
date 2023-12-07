@@ -6,12 +6,9 @@ WORKDIR /var/www/html
 COPY composer.json composer.lock /var/www/html/
 
 # Install dependencies
-RUN apk update && apk add --no-cache \
-    build-base \
-    locales \
-    zip \
-    unzip \
-    && composer install --no-dev --optimize-autoloader
+RUN apk update
+
+RUN composer install --no-dev --optimize-autoloader
 
 # Add user for Laravel application
 RUN addgroup -g 1000 www \
