@@ -1,20 +1,21 @@
 FROM richarvey/nginx-php-fpm:2.0.0
 
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
+
 # Copy only the necessary files for dependency installation
 COPY composer.json composer.lock /var/www/html/
 
 # Set working directory
 WORKDIR /var/www/html
 
-
-# Install dependencies
-RUN composer update
-
-# Allow composer to run as root
-ENV COMPOSER_ALLOW_SUPERUSER 1
+# Install extensions
+RUN docker-php-ext-configure gd --with-external-gd --with-freetype --with-jpeg \
+      && docker-php-ext-install pdo_mysql mbstring zip exif bcmath pcntl gd
 
 # Install dependencies
 RUN apk update \
+    && composer update \
     && composer install --no-dev --optimize-autoloader
 
 # Add user for Laravel application
