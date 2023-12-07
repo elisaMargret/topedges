@@ -1,17 +1,21 @@
 FROM richarvey/nginx-php-fpm:2.0.0
 
-COPY ./composer.json ./composer.lock /var/www/html/
+WORKDIR /var/www/html
+
+# Copy only the necessary files for dependency installation
+COPY composer.json composer.lock /var/www/html/
 
 # Install dependencies
 RUN apk update && apk add --no-cache \
-    build-essential \
+    build-base \
     locales \
     zip \
-    unzip
+    unzip \
+    && composer install --no-dev --optimize-autoloader
 
 # Add user for Laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+RUN addgroup -g 1000 www \
+    && adduser -u 1000 -G www -s /bin/sh -D www
 
 # Laravel config
 ENV APP_ENV production
@@ -22,7 +26,7 @@ ENV LOG_CHANNEL stderr
 RUN chown -R www:www /var/www/html \
     && chmod -R 755 /var/www/html
 
-# Copy existing application directory permissions
+# Copy the rest of the application files
 COPY --chown=www:www . .
 
 # Change current user to www
