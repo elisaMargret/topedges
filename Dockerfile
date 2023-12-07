@@ -7,17 +7,14 @@ RUN apk update
 # Install dependencies
 RUN apk update && apk add --no-cache \
     build-essential \
-    libfreetype6-dev \
     locales \
     zip \
-    jpegoptim optipng pngquant gifsicle \
-    vim \
     unzip \
     libonig-dev \
     libzip-dev \
     libgd-dev
 
-# Add user for laravel application
+# Add user for Laravel application
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
@@ -35,6 +32,5 @@ COPY --chown=www:www . .
 
 # Change current user to www
 USER www
-
 
 CMD ["/start.sh"]
