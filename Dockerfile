@@ -22,10 +22,6 @@ COPY composer.json composer.lock /var/www/html/
 # Set working directory
 WORKDIR /var/www/html
 
-# Install extensions
-RUN docker-php-ext-configure gd --with-external-gd --with-freetype --with-jpeg \
-      && docker-php-ext-install pdo_mysql mbstring zip exif bcmath pcntl gd
-
 # Install dependencies
 RUN apk update \
     && composer update \
