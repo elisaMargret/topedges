@@ -12,21 +12,6 @@ WORKDIR /var/www/html
 
 # Install dependencies
 RUN apk update
-# RUN composer install --no-dev --optimize-autoloader
-
-# Add user for Laravel application
-RUN addgroup -g 1000 www \
-    && adduser -u 1000 -G www -s /bin/sh -D www
-
-# Set ownership and permissions
-RUN chown -R www:www /var/www/html \
-    && chmod -R 755 /var/www/html
-
-# Copy the rest of the application files
-COPY --chown=www:www . .
-
-# Change current user to www
-USER www
 
 # Image config
 ENV SKIP_COMPOSER 1
