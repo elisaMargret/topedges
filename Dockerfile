@@ -10,6 +10,10 @@ COPY composer.json composer.lock /var/www/html/
 # Set working directory
 WORKDIR /var/www/html
 
+# Install dependencies
+RUN apk update
+RUN composer install --no-dev --optimize-autoloader
+
 # Add user for Laravel application
 RUN addgroup -g 1000 www \
     && adduser -u 1000 -G www -s /bin/sh -D www
@@ -35,9 +39,5 @@ ENV REAL_IP_HEADER 1
 ENV APP_ENV production
 ENV APP_DEBUG false
 ENV LOG_CHANNEL stderr
-
-# Install dependencies
-RUN apk update \
-    && composer install --no-dev --optimize-autoloader
 
 CMD ["/start.sh"]
