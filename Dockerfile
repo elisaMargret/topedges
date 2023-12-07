@@ -12,7 +12,7 @@ WORKDIR /var/www/html
 
 # Install dependencies
 RUN apk update
-RUN composer install --no-dev --optimize-autoloader
+# RUN composer install --no-dev --optimize-autoloader
 
 # Add user for Laravel application
 RUN addgroup -g 1000 www \
