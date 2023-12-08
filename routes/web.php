@@ -88,7 +88,7 @@ Route::group(['prefix' => 'admin'],function(){
 
     Route::get('/', [LoginController::class, 'index'])->name('admin.login');
     Route::get('/admin-reset-password', [LoginController::class, 'resetPassword'])->name('admin.reset-password');
-    Route::post('/admin-login', [LoginController::class,'login' ])->name('admin.login.post');
+    Route::post('/', [LoginController::class,'login' ])->name('admin.login.post');
     
     Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
     
