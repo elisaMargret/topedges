@@ -88,10 +88,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="country">Country</label>
-                                                    <select class="form-control" name="country" id="country">
-                                                        <option value="nigeria" selected>Nigeria</option>
-                                                        {{-- <option>Female</option> --}}
-                                                    </select>
+                                                    <input type="text"  name="country" placeholder="United State">
                                                 </div>
                                             </div>
                                         </div>
