@@ -18,7 +18,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        // $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth']);
     }
 
     /**
@@ -30,9 +31,9 @@ class HomeController extends Controller
     public function dashboard(Transaction $transaction, ReferalTracker $referal)
     {
 
-        if (empty(Auth::user()->status)){
-            Mail::to(Auth::user()->email)->send(new WelcomeMessage());
-        }
+        // if (empty(Auth::user()->status)){
+        //     Mail::to(Auth::user()->email)->send(new WelcomeMessage());
+        // }
             $trans = $transaction->sumTotalByType(Auth::id(), 'deposit');
         $referal = $referal->sumAllByUserId(Auth::id()) ?? 0;
 
